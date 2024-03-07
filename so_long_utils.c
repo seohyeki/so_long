@@ -6,7 +6,7 @@
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 16:37:27 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/02/14 15:00:59 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/02/14 20:11:08 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	print_error(void)
 
 int	close_win(t_game *game)
 {
-	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	mlx_destroy_window(game->mlx, game->win);
 	exit(0);
 }

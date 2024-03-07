@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_press_key.c                                :+:      :+:    :+:   */
+/*   so_long_press_key_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 16:41:26 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/02/14 16:26:10 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/02/16 13:57:58 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	move(t_game *game, int move)
 	if (game->map[i + move] == 'E' && game->c_cnt == game->c_num)
 	{
 		game->move++;
-		ft_printf("%d\n", game->move);
 		mlx_destroy_window(game->mlx, game->win);
 		exit(0);
 	}
@@ -33,7 +32,6 @@ static void	move(t_game *game, int move)
 		game->map[i] = '0';
 		game->map[i + move] = 'P';
 		game->move++;
-		ft_printf("%d\n", game->move);
 		put_img_win(game);
 	}
 }

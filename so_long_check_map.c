@@ -6,7 +6,7 @@
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:12:10 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/02/11 19:35:08 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:48:52 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ static int	surrounded_by_wall(t_game *game)
 	j = 0;
 	while (game->map[i])
 	{
-		if (j == 0 && game->map[i] != '1') //첫줄인데 1이 아님
+		if (j == 0 && game->map[i] != '1')
 			return (0);
-		else if (j == (game->map_height - 1) && game->map[i] != '1') //마지막줄인데 1이 아님
+		else if (j == (game->hei - 1) && game->map[i] != '1')
 			return (0);
-		else if (i % game->map_width == 0 && game->map[i] != '1') //중간줄인데 줄의 첫번째가 1이 아님
+		else if (i % game->wid == 0 && game->map[i] != '1')
 			return (0);
-		else if ((i % game->map_width) == (game->map_width - 1) && game->map[i] != '1') //중간줄인데 줄의 마지막이 1이 아님
+		else if ((i % game->wid) == (game->wid - 1) && game->map[i] != '1')
 			return (0);
 		i++;
-		if (i % game->map_width == 0)
+		if (i % game->wid == 0)
 			j++;
 	}
 	return (1);
@@ -60,17 +60,17 @@ static int	count_c_p_e(t_game *game)
 		i++;
 	}
 	if (game->c_num < 1 || p_num != 1 || e_num != 1)
-		return(0);
+		return (0);
 	return (1);
 }
 
 int	check_valid_map(t_game *game)
 {
-	if (game->map_width < 3 || game->map_height < 3) //적어도 width 3이상 && height 3이상이어야 함
+	if (game->wid < 3 || game->hei < 3)
 		return (0);
-	if (!surrounded_by_wall(game)) //벽으로 둘러쌓여있는지
+	if (!surrounded_by_wall(game))
 		return (0);
-	if (!count_c_p_e(game)) //수집품 1개이상, 출구 1개, 시작지점 1개, 01EPC아닌거 있는지
+	if (!count_c_p_e(game))
 		return (0);
 	return (1);
 }

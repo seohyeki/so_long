@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_draw_map.c                                 :+:      :+:    :+:   */
+/*   so_long_draw_map_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 11:56:36 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/02/16 15:15:47 by seohyeki         ###   ########.fr       */
+/*   Created: 2024/02/14 17:28:08 by seohyeki          #+#    #+#             */
+/*   Updated: 2024/02/16 15:15:48 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,23 @@ void	set_img_ptr(t_game *game)
 	game->img_w = mlx_xpm_file_to_image(game->mlx, "img_w.xpm", &wid, &hei);
 	game->img_e = mlx_xpm_file_to_image(game->mlx, "img_e.xpm", &wid, &hei);
 	game->img_c = mlx_xpm_file_to_image(game->mlx, "img_c.xpm", &wid, &hei);
+}
+
+void	put_move_cnt(t_game *game)
+{
+	char	*move_cnt;
+
+	move_cnt = ft_itoa(game->move);
+	mlx_string_put(game->mlx, game->win, 26, 27, 0xFF0000, move_cnt);
+	free(move_cnt);
+}
+
+void	put_player_img(size_t x, size_t y, t_game *g)
+{
+	if (g->move % 2 == 0)
+		mlx_put_image_to_window(g->mlx, g->win, g->img_p, x * 64, y * 64);
+	else
+		mlx_put_image_to_window(g->mlx, g->win, g->img_p2, x * 64, y * 64);
 }
 
 void	put_img_win(t_game *g)
@@ -47,9 +64,10 @@ void	put_img_win(t_game *g)
 			else if (g->map[x + (y * g->wid)] == 'E')
 				mlx_put_image_to_window(g->mlx, g->win, g->img_e, x * n, y * n);
 			else if (g->map[x + (y * g->wid)] == 'P')
-				mlx_put_image_to_window(g->mlx, g->win, g->img_p, x * n, y * n);
+				put_player_img(x, y, g);
 			x++;
 		}
 		y++;
 	}
+	put_move_cnt(g);
 }

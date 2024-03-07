@@ -6,7 +6,7 @@
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 14:10:21 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/02/14 15:09:34 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:21:38 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static void	dfs_collectible(int pos, char *map, int *cnt, t_game *game)
 		return ;
 	if (map[pos] != 'V')
 	{
-		if (map[pos] == 'C') //수집품일때
+		if (map[pos] == 'C')
 			(*cnt)++;
-		map[pos] = 'V'; //빈공간일때
-		dfs_collectible(pos - 1, map, cnt, game); //왼쪽
-		dfs_collectible(pos + 1, map, cnt, game); //오른쪽
-		dfs_collectible(pos - game->map_width, map, cnt, game); //위쪽
-		dfs_collectible(pos + game->map_width, map, cnt, game); //아래쪽
+		map[pos] = 'V';
+		dfs_collectible(pos - 1, map, cnt, game);
+		dfs_collectible(pos + 1, map, cnt, game);
+		dfs_collectible(pos - game->wid, map, cnt, game);
+		dfs_collectible(pos + game->wid, map, cnt, game);
 	}
 }
 
@@ -34,24 +34,24 @@ static void	dfs_exit(int pos, char *map, int *cnt, t_game *game)
 		return ;
 	if (map[pos] != 'V')
 	{
-		if (map[pos] == 'E') //출구일때
+		if (map[pos] == 'E')
 			(*cnt)++;
-		map[pos] = 'V'; //빈공간일때
-		dfs_exit(pos - 1, map, cnt, game); //왼쪽
-		dfs_exit(pos + 1, map, cnt, game); //오른쪽
-		dfs_exit(pos - game->map_width, map, cnt, game); //위쪽
-		dfs_exit(pos + game->map_width, map, cnt, game); //아래쪽
+		map[pos] = 'V';
+		dfs_exit(pos - 1, map, cnt, game);
+		dfs_exit(pos + 1, map, cnt, game);
+		dfs_exit(pos - game->wid, map, cnt, game);
+		dfs_exit(pos + game->wid, map, cnt, game);
 	}
-} 
+}
 
-int check_valid_path(char *map_original, t_game *game)
+int	check_valid_path(char *map_original, t_game *game)
 {
 	char	*map_c;
 	char	*map_e;
 	int		c_count;
 	int		e_count;
 	size_t	pos;
-	
+
 	pos = 0;
 	c_count = 0;
 	e_count = 0;

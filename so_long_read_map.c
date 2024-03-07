@@ -6,7 +6,7 @@
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:07:50 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/02/14 14:24:15 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:27:39 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static size_t	ft_strlen_no_nl(char *line)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (line[i] != '\n' && line[i] != '\0')
@@ -40,7 +40,7 @@ static void	ft_strcat_no_nl(char *dest, const char *src)
 	dest[i] = '\0';
 }
 
-static char *ft_strjoin_realloc(char *dest, char *src)
+static char	*ft_strjoin_realloc(char *dest, char *src)
 {
 	size_t	dest_len;
 	size_t	src_len;
@@ -70,16 +70,16 @@ void	read_map(char *filename, t_game *game)
 	line = get_next_line(fd);
 	if (line == NULL)
 		print_error();
-	game->map_height = 0;
-	game->map_width = ft_strlen_no_nl(line);
+	game->hei = 0;
+	game->wid = ft_strlen_no_nl(line);
 	game->map = line;
 	while (line)
 	{
-		game->map_height++;
+		game->hei++;
 		line = get_next_line(fd);
 		if (line)
 		{
-			if (ft_strlen_no_nl(line) != game->map_width) //직사각형인지 확인하기
+			if (ft_strlen_no_nl(line) != game->wid)
 				print_error();
 			game->map = ft_strjoin_realloc(game->map, line);
 		}

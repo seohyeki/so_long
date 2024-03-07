@@ -6,7 +6,7 @@
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 21:26:42 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/02/14 13:45:11 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:32:12 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "libft.h"
 
 int		print_char(int c);
 int		print_str(char *str);
